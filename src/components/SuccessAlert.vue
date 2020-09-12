@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>{{formFields.name + ' ' + formFields.lastName }}</p>
-    <p>Успешно зарегестрирован!</p>
+    <p>Успешно зарегистрирован!</p>
   </div>
 </template>
 

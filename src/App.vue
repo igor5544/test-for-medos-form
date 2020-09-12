@@ -324,7 +324,7 @@
         </div>
         <div class="btn-wrapper">
           <button class="btn btn--prev" @click="prevStep" type="button">Вернуться</button>
-          <button class="btn" type="submit">Зарегестрироваться</button>
+          <button class="btn" type="submit">Зарегистрироваться</button>
         </div>
       </fieldset>
     </form>
@@ -341,10 +341,14 @@ const tel = helpers.regex("tel", /^\+?[7][-\(]?\d{3}\)?-?\d{3}-?\d{2}-?\d{2}$/);
 const maxDate = date =>
   helpers.withParams(
     { type: "maxDate", value: date },
-    value => !helpers.req(value) || date > value
+    value => !helpers.req(value) || date >= value
   );
 
 const dateNow = new Date().toISOString().substring(0, 10);
+
+let tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
+tomorrow = tomorrow.toISOString().substring(0, 10);
 
 export default {
   name: "App",
@@ -432,7 +436,7 @@ export default {
       docOrigin: {},
       docDate: {
         required,
-        maxDate: maxDate(dateNow + 1)
+        maxDate: maxDate(tomorrow)
       }
     }
   },
